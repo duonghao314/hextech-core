@@ -6,6 +6,9 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -14,6 +17,8 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    path("myadmin/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
     # User management
     path("users/", include("hextech_core.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
