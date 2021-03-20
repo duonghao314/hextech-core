@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from wagtail.core.fields import RichTextField
 
 from hextech_core.core.models.base_model import BaseModel
 
@@ -10,7 +11,7 @@ class Blog(BaseModel):
         "users.User", on_delete=models.CASCADE, related_name="blogs", db_index=True
     )
     title = models.CharField(max_length=400)
-    content = models.TextField()
+    content = RichTextField()
     slug = models.SlugField(blank=True, unique=True, db_index=True)
     published = models.BooleanField(default=True)
     published_at = models.DateTimeField(null=True, blank=True)

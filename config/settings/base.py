@@ -89,6 +89,7 @@ LOCAL_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail.core",
+    "wagtail.contrib.legacy.richtext",
     "taggit",
     "modelcluster",
 ]
@@ -351,3 +352,13 @@ WAGTAIL_SITE_NAME = "Hextech Core"
 
 # Reverse the default case-sensitive handling of tags
 TAGGIT_CASE_INSENSITIVE = True
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    "default": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {"features": ["h2", "bold", "italic", "link", "document-link"]},
+    },
+    "legacy": {
+        "WIDGET": "wagtail.admin.rich_text.HalloRichTextArea",
+    },
+}

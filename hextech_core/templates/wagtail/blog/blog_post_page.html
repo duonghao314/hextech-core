@@ -1,0 +1,7 @@
+{# templates/blog/blog_post_page.html #}
+{% extends '' %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  {{ self.content|richtext }}
+{% endblock content %}
