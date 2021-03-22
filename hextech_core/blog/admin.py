@@ -7,7 +7,7 @@ from wagtail.contrib.modeladmin.options import (
 )
 from wagtail.core.fields import RichTextField
 
-from hextech_core.blog.models import Blog, BlogCategory
+from hextech_core.blog.models import Blog, BlogCategory, BlogTag
 
 
 @admin.register(Blog)
@@ -38,11 +38,22 @@ class BlogCategoryWagtail(ModelAdmin):
     ]
 
 
+class BlogTagWagtail(ModelAdmin):
+    model = BlogTag
+    menu_label = "Blog Tags"
+    menu_icon = "tag"
+    menu_order = 120
+    add_to_settings_menu = False
+    exclude_from_explorer = False
+    list_display = ("tag", "created_at")
+    search_fields = ("tag",)
+
+
 class BlogWagtail(ModelAdmin):
     model = Blog
     menu_label = "Blogs"
-    menu_icon = "doc-empty"
-    menu_order = 120
+    menu_icon = "doc-full"
+    menu_order = 190
     add_to_settings_menu = False
     exclude_from_explorer = False
     list_display = ("title", "author", "category", "created_at")
@@ -58,6 +69,7 @@ class BlogWagtail(ModelAdmin):
                 FieldPanel("category", classname="category"),
                 # RichTextFieldPanel('content', classname='content'),
                 FieldPanel("content", classname="content"),
+                FieldPanel("tags", classname="tags"),
                 FieldPanel("slug", classname="slug"),
                 FieldRowPanel(
                     [
@@ -78,6 +90,7 @@ class BlogsAppWagtailAdmin(ModelAdminGroup):
     menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
     items = (
         BlogCategoryWagtail,
+        BlogTagWagtail,
         BlogWagtail,
     )
 
