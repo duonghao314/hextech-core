@@ -1,10 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 from wagtail.core.fields import RichTextField
 
 from hextech_core.core.models.base_model import BaseModel, MetadataModel
 from hextech_core.core.utils import no_accent_vietnamese
+from hextech_core.core.utils.id import RandomID
 
 
 class BlogCategory(MetadataModel):
@@ -45,6 +47,9 @@ class BlogTag(BaseModel):
 
 
 class Blog(MetadataModel):
+    id = models.BigIntegerField(
+        _("Random id"), default=RandomID("blog.Blog"), primary_key=True
+    )
     author = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="blogs", db_index=True
     )
@@ -74,3 +79,15 @@ class Blog(MetadataModel):
 
     def __str__(self):
         return self.title
+
+
+class BlogComment(BaseModel):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comments")
+    content = RichTextField()
+    title = models.CharField(max_length=255)
+    created_by = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="+", null=True, blank=True
+    )
+
+    def __str__(self):
+        return f"#{self.blog.id} - {self.title if self.title else 'Untitled'}"

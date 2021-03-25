@@ -362,3 +362,13 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
         "WIDGET": "wagtail.admin.rich_text.HalloRichTextArea",
     },
 }
+
+# RANDOM ID
+RANDOM_ID = {
+    "default": {
+        "MIN": 10000,
+        "MAX": 9999999,
+        "GROWTH_FACTOR": 10,
+        "GROW_AFTER_COLLISIONS": 5,
+    }
+}
