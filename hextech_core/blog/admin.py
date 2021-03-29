@@ -1,5 +1,10 @@
 from django.contrib import admin
-from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    FieldRowPanel,
+    InlinePanel,
+    MultiFieldPanel,
+)
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
@@ -71,16 +76,18 @@ class BlogWagtail(ModelAdmin):
                 FieldPanel("content", classname="content"),
                 FieldPanel("tags", classname="tags"),
                 FieldPanel("slug", classname="slug"),
-                FieldRowPanel(
-                    [
-                        FieldPanel("published", classname="published"),
-                        FieldPanel("published_at", classname="published_at"),
-                    ]
-                ),
             ],
             heading="Blog content",
         ),
+        FieldRowPanel(
+            [
+                FieldPanel("published", classname="published"),
+                FieldPanel("published_at", classname="published_at"),
+            ],
+            heading="Publications",
+        ),
         FieldPanel("metadata"),
+        InlinePanel("comments", label="Comments"),
     ]
 
 

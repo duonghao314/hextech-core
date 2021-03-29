@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from wagtail.core.fields import RichTextField
 
 from hextech_core.core.models.base_model import BaseModel, MetadataModel
@@ -46,7 +48,7 @@ class BlogTag(BaseModel):
         return super().save()
 
 
-class Blog(MetadataModel):
+class Blog(ClusterableModel, MetadataModel):
     id = models.BigIntegerField(
         _("Random id"), default=RandomID("blog.Blog"), primary_key=True
     )
@@ -82,7 +84,7 @@ class Blog(MetadataModel):
 
 
 class BlogComment(BaseModel):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comments")
+    blog = ParentalKey(Blog, on_delete=models.CASCADE, related_name="comments")
     content = RichTextField()
     title = models.CharField(max_length=255)
     created_by = models.ForeignKey(
