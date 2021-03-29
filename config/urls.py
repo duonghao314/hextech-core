@@ -17,7 +17,7 @@ urlpatterns = [
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     path(settings.ADMIN_URL, admin.site.urls),
-    path("myadmin/", include(wagtailadmin_urls)),
+    path(f"{settings.WAGTAIL_ADMIN_URL}/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("users/", include("hextech_core.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),

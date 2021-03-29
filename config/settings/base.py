@@ -325,8 +325,6 @@ REST_FRAMEWORK = {
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
-# Your stuff...
-# ------------------------------------------------------------------------------
 # WAGTAIL SETTINGS
 
 # This is the human-readable name of your Wagtail install
@@ -354,15 +352,17 @@ WAGTAIL_SITE_NAME = "Hextech Core"
 # Reverse the default case-sensitive handling of tags
 TAGGIT_CASE_INSENSITIVE = True
 
-WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    "default": {
-        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
-        "OPTIONS": {"features": ["h2", "bold", "italic", "link", "document-link"]},
-    },
-    "legacy": {
-        "WIDGET": "wagtail.admin.rich_text.HalloRichTextArea",
-    },
-}
+# WAGTAILADMIN_RICH_TEXT_EDITORS = {
+#     "default": {
+#         "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+#         "OPTIONS": {"features": ["h2", "bold", "italic", "link", "document-link"]},
+#     },
+#     "legacy": {
+#         "WIDGET": "wagtail.admin.rich_text.HalloRichTextArea",
+#     },
+# }
+
+WAGTAIL_ADMIN_URL = env.str("WAGTAIL_ADMIN_URL", "myadmin")
 
 # RANDOM ID
 RANDOM_ID = {

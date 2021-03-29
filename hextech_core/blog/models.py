@@ -9,6 +9,7 @@ from wagtail.core.fields import RichTextField
 from hextech_core.core.models.base_model import BaseModel, MetadataModel
 from hextech_core.core.utils import no_accent_vietnamese
 from hextech_core.core.utils.id import RandomID
+from hextech_core.users.models import User
 
 
 class BlogCategory(MetadataModel):
@@ -93,3 +94,12 @@ class BlogComment(BaseModel):
 
     def __str__(self):
         return f"#{self.blog.id} - {self.title if self.title else 'Untitled'}"
+
+
+class BlogLike(BaseModel):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="likes")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liked")
+    is_like = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ("blog", "user")
