@@ -1,9 +1,10 @@
-from rest_framework.viewsets import ModelViewSet
-
 from hextech_core.blog.api.serializers import BlogCategorySerializer
 from hextech_core.blog.models import BlogCategory
+from hextech_core.core.restful.base_views import BaseViewSet
 
 
-class BlogCategoryViewSet(ModelViewSet):
+class BlogCategoryViewSet(BaseViewSet):
     serializer_class = BlogCategorySerializer
-    queryset = BlogCategory.objects.all()
+
+    def get_queryset(self):
+        return BlogCategory.objects.filter(parent__isnull=True)

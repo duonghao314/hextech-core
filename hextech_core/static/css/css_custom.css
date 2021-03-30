@@ -11,6 +11,9 @@
 .menu-item {
   font-family: polaris
 }
+h1 {
+  font-family: polaris
+}
 :root {
   --color-primary: rgba(102, 205, 205);
   --color-primary-transparent: 15%;

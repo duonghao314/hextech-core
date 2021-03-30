@@ -10,8 +10,8 @@ else:
     router = SimpleRouter()
 
 
-router.register("users", UserViewSet)
-router.register("blogs/category", BlogCategoryViewSet)
+router.register("users", UserViewSet, basename="users")
+router.register("blogs/category", BlogCategoryViewSet, basename="blogs-category")
 
 app_name = "api"
 urlpatterns = router.urls

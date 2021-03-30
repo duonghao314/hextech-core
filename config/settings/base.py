@@ -374,3 +374,12 @@ RANDOM_ID = {
         "GROW_AFTER_COLLISIONS": 5,
     }
 }
+
+
+# drf_yasg setting
+SWAGGER_SETTINGS = {
+    "DEFAULT_AUTO_SCHEMA_CLASS": "config.swaggers.CustomSwaggerAutoSchema",
+    "SECURITY_DEFINITIONS": {
+        "api_key": {"type": "oauth2", "in": "header", "name": "Authorization"}
+    },
+}
