@@ -1,4 +1,6 @@
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
+from django.templatetags.static import static
+from django.utils.html import format_html
 from wagtail.admin.rich_text.converters.html_to_contentstate import (
     InlineStyleElementHandler,
 )
@@ -62,3 +64,11 @@ def register_center_feature(features):
     features.register_converter_rule("contentstate", feature_name, db_conversion)
 
     features.default_features.append(feature_name)
+
+
+@hooks.register("insert_global_admin_css")
+def global_admin_css():
+    print("here")
+    return format_html(
+        '<link rel="stylesheet" href="{}">', static("css/css_custom.css")
+    )

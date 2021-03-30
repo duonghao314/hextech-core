@@ -78,6 +78,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "hextech_core.users.apps.UsersConfig",
     "hextech_core.blog.apps.BlogConfig",
+    "hextech_core.core.apps.CoreConfig",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

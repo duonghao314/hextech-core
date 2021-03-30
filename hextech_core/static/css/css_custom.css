@@ -1,0 +1,22 @@
+@font-face {
+  font-family: polaris;
+  src: url("/static/fonts/Polaris.otf") format("opentype");
+}
+
+@font-face {
+  font-family: polaris;
+  font-weight: bold;
+  src: url("/static/fonts/Polaris.otf") format("opentype");
+}
+.menu-item {
+  font-family: polaris
+}
+:root {
+  --color-primary: rgba(102, 205, 205);
+  --color-primary-transparent: 15%;
+  --color-primary-darker: #7E97B1;
+  --color-primary-dark: hsl(330, 100%, 70%);
+  --color-input-focus: rgb(204, 0, 102);
+  --color-input-focus-border: #4d0026;
+  font-family: polaris
+}
