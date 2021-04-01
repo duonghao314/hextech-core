@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.serializers import Serializer
 from rest_framework.viewsets import ModelViewSet
 
@@ -16,7 +16,7 @@ from .response import APIResponse
 
 class BaseViewSet(ModelViewSet):
     serializer_class = None
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     lookup_field = "id"
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = []
