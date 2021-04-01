@@ -5,10 +5,12 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    avatar = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ["username", "url"]
+        fields = ["username", "first_name", "last_name", "avatar"]
 
-        extra_kwargs = {
-            "url": {"view_name": "api:user-detail", "lookup_field": "username"}
-        }
+    @staticmethod
+    def get_avatar(user: User) -> str:
+        return user.wagtail_userprofile.avatar.url

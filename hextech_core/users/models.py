@@ -14,7 +14,7 @@ class User(AbstractUser):
     id = BigIntegerField(
         _("Random id"), default=RandomID("users.User"), primary_key=True
     )
-    first_name = CharField(_("First bame of User"), blank=True, max_length=20)  # type: ignore
+    first_name = CharField(_("First name of User"), blank=True, max_length=20)  # type: ignore
     last_name = CharField(_("Last name of User"), blank=True, max_length=20)  # type: ignore
 
     def get_absolute_url(self):

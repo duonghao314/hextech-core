@@ -73,6 +73,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_yasg",
+    "versatileimagefield",
 ]
 
 LOCAL_APPS = [
@@ -382,4 +383,18 @@ SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "api_key": {"type": "oauth2", "in": "header", "name": "Authorization"}
     },
+}
+
+
+# Versatatile Image field
+VERSATILEIMAGEFIELD_SETTINGS = {
+    "cache_length": 2592000,
+    "cache_name": "versatileimagefield_cache",
+    "jpeg_resize_quality": 70,
+    "sized_directory_name": "__sized__",
+    "filtered_directory_name": "__filtered__",
+    "placeholder_directory_name": "__placeholder__",
+    "create_images_on_demand": True,
+    "image_key_post_processor": None,
+    "progressive_jpeg": False,
 }
